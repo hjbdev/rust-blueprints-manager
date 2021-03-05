@@ -16,7 +16,7 @@ class BlueprintsController extends Controller
         $blueprint = Blueprint::where('name', $request->blueprint)->firstOrFail();
         $user = User::findOrFail($request->user);
 
-        $user->blueprints()->attach($blueprint);
+        $user->blueprints()->syncWithoutDetaching([$blueprint]);
 
         return redirect()->to('/blueprints');
     }
