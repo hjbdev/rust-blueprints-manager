@@ -61,6 +61,6 @@ class User extends Authenticatable
 
     public function blueprints()
     {
-        return $this->belongsToMany(Blueprint::class);
+        return $this->belongsToMany(Blueprint::class)->withPivot('team_id');
     }
 }

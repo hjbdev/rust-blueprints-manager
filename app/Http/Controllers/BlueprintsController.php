@@ -16,15 +16,30 @@ class BlueprintsController extends Controller
         $blueprint = Blueprint::where('name', $request->blueprint)->firstOrFail();
         $user = User::findOrFail($request->user);
 
-        $user->blueprints()->syncWithoutDetaching([$blueprint]);
+        // // check if it already exists
+        // $existingLink = Blueprint::whereHas('users', function (Builder $query) use ($user) {
+        //     $query->wherePivot('team_id', auth()->user()->currentTeam->id);
+        //     $query->where('id', $user->id);
+        // })->count();
 
-        return redirect()->to('/blueprints');
+        $existingLink = $blueprint->users()->wherePivot('team_id', auth()->user()->currentTeam->id)->where('id', $user->id)->count();
+
+
+        if(!$existingLink) {
+            $user->blueprints()->attach($blueprint, [
+                'team_id' => auth()->user()->currentTeam->id
+            ]);
+            return redirect()->to('/blueprints')->with('flash.banner', 'Blueprint added.');
+        }
+
+        return redirect()->to('/blueprints')->with('flash.banner', 'You already know this blueprint.')->with('flash.bannerStyle', 'danger');
     }
 
     public function index()
     {
         $blueprints = Blueprint::whereHas('users', function (Builder $query) {
             $query->whereIn('id', auth()->user()->currentTeam->allUsers()->pluck('id'));
+            $query->where('blueprint_user.team_id', auth()->user()->currentTeam->id);
         })->get();
 
         return Inertia::render('Blueprints', compact('blueprints'));
