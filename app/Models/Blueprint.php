@@ -9,7 +9,7 @@ class Blueprint extends Model
 {
     use HasFactory;
 
-    protected $appends = ['teammates'];
+    protected $appends = ['teammates', 'user_knows'];
 
     public function users()
     {
@@ -19,5 +19,10 @@ class Blueprint extends Model
     public function getTeammatesAttribute()
     {
         return $this->users()->whereIn('id', auth()->user()->currentTeam->allUsers()->pluck('id'))->get();
+    }
+
+    public function getUserKnowsAttribute()
+    {
+        return (bool) $this->users()->where('id', auth()->user()->id);
     }
 }

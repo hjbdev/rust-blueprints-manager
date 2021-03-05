@@ -7,6 +7,7 @@ use App\Models\Blueprint;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class BlueprintsController extends Controller
@@ -43,5 +44,16 @@ class BlueprintsController extends Controller
         })->get();
 
         return Inertia::render('Blueprints', compact('blueprints'));
+    }
+
+    public function destroy($id)
+    {
+        DB::table('blueprint_user')
+            ->where('blueprint_id', $id)
+            ->where('user_id', auth()->user()->id)
+            ->where('team_id', auth()->user()->currentTeam->id)
+            ->delete();
+
+        return redirect()->to('/blueprints')->with('flash.banner', 'You have unlearned this blueprint');
     }
 }

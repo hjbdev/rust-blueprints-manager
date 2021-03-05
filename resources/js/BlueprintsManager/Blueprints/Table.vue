@@ -38,6 +38,12 @@
                                     >
                                         Workbench Level
                                     </th>
+                                    <th
+                                        scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-5"
+                                    >
+                                        
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -82,6 +88,15 @@
                                         >
                                         <span v-else>Workbench Not Needed</span>
                                     </td>
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                    >
+                                        <a href="#" @click="del(blueprint.id)" class="text-gray-500 hover:text-gray-800 transition duration-100" v-show="blueprint.user_knows">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -123,6 +138,9 @@ export default {
             if(tier === 3) {
                 return 'bg-red-200 text-red-500';
             }
+        },
+        del(id) {
+            this.$inertia.delete(`/blueprints/${id}`);
         }
     }
 }

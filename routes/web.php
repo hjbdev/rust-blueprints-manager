@@ -43,4 +43,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     });
 
     Route::post('/blueprints/research', [BlueprintsController::class, 'research']);
+    Route::delete('/blueprints/{blueprint}', [BlueprintsController::class, 'destroy']);
 });
