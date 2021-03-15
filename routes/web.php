@@ -44,4 +44,24 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
 
     Route::post('/blueprints/research', [BlueprintsController::class, 'research']);
     Route::delete('/blueprints/{blueprint}', [BlueprintsController::class, 'destroy']);
+
+    Route::get('rustplus/callback', function(Request $request) {
+        // $ip      = "188.165.229.79";
+        // $port    = 28082;
+    
+        // ws://188.165.229.79:28082
+    
+        // dd($token);
+    
+        // $output = null;
+    
+        // exec('node ' . base_path('app/Console/Node/RustPlusInfo.js') . ' ' . $ip . ' ' . $port . ' ' . $steamId . ' ' . $token, $output);
+    
+        // dd($output);
+        if(auth()->check()) {
+            return redirect('/teams/' . auth()->user()->currentTeam->id)->with('flash.rustPlusSteamData', ['steamId' => $request->steamId, 'token' => $request->token]);
+        }
+    
+        return 'Something went wrong.';
+    });
 });

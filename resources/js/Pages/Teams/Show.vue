@@ -10,6 +10,10 @@
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <update-team-name-form :team="team" :permissions="permissions" />
 
+                <jet-section-border />
+
+                <server-link class="mt-10 sm:mt-0"></server-link>
+
                 <team-member-manager class="mt-10 sm:mt-0"
                             :team="team"
                             :available-roles="availableRoles"
@@ -31,6 +35,7 @@
     import DeleteTeamForm from './DeleteTeamForm'
     import JetSectionBorder from '@/Jetstream/SectionBorder'
     import UpdateTeamNameForm from './UpdateTeamNameForm'
+    import ServerLink from './ServerLink';
 
     export default {
         props: [
@@ -45,6 +50,7 @@
             JetSectionBorder,
             TeamMemberManager,
             UpdateTeamNameForm,
+            ServerLink
         },
     }
 </script>
