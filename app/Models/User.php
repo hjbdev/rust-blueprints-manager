@@ -63,4 +63,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Blueprint::class)->withPivot('team_id');
     }
+
+    public function getRustplusCurrentTeamDataAttribute()
+    {
+        return $this->teamInfo()->where('team_id', $this->currentTeam->id)->first();
+    }
+
+    public function teamInfo()
+    {
+        return $this->hasMany(RustplusData::class);
+    }
 }

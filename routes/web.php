@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BlueprintsController;
+use App\Http\Controllers\MapController;
 use App\Models\Blueprint;
+use App\Models\RustplusData;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +44,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         return Inertia::render('BlueprintResearch', compact('blueprints', 'teammates'));
     });
 
+    Route::get('/map', [MapController::class, 'index'])->name('map');
+
     Route::post('/blueprints/research', [BlueprintsController::class, 'research']);
     Route::delete('/blueprints/{blueprint}', [BlueprintsController::class, 'destroy']);
 
@@ -64,4 +68,42 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     
         return 'Something went wrong.';
     });
+
+    Route::post('rustplus/pair', function (Request $request) {
+        $ip = $request->get('ip', '188.165.229.79');
+        $port = $request->get('port', '28015');
+        $steamId = $request->get('steamId', "76561198058468382");
+        $token = $request->get('token', "eyJzdGVhbUlkIjoiNzY1NjExOTgwNTg0NjgzODIiLCJpc3MiOjE2MTU4MzM1NjgsImV4cCI6MTYxNzA0MzE2OH0=.6J20d5iEv8Yj60QpnAJ3IKheCOJr4d/R1yLeMB/7H+jum8T+Ctbv1olToAS5FLT+/gU64yqyRlff7QFhLUa3BA==");
+
+        $user = auth()->user();
+        $user->steam_id = $steamId;
+        $user->save();
+
+        $output = null;
+        
+        exec('node ' . base_path('app/Console/Node/RustPlusPair.js') . ' ' . $ip . ' ' . $port . ' ' . $steamId . ' ' . $token, $output);
+    
+        $team = auth()->user()->currentTeam;
+        $team->server_ip = $ip;
+        $team->server_port = $port;
+        $team->save();
+    
+        $response = json_decode($output[8]);
+    
+        if($response) {
+            $rustplusData = RustplusData::where('team_id', $team->id)->where('user_id', auth()->user()->id)->first();
+            if (!$rustplusData) {
+                $rustplusData = new RustplusData();
+            }
+            $rustplusData->team_id = $team->id;
+            $rustplusData->user_id = auth()->user()->id;
+            $rustplusData->server_token = $response->playerToken;
+            $team->server_port = $response->port;
+            $team->save();
+            $rustplusData->updated_at = now();
+            $rustplusData->save();
+        }
+    });
+
+    
 });

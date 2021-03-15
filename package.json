@@ -27,6 +27,9 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "@liamcottle/rustplus.js": "^2.1.0"
+        "@liamcottle/rustplus.js": "^2.1.0",
+        "@turf/square-grid": "^6.3.0",
+        "@vue-leaflet/vue-leaflet": "^0.6.0",
+        "leaflet": "^1.7.1"
     }
 }

@@ -852,6 +852,101 @@
   version "0.3.1"
   resolved "http://node.senses.co.uk:80/@tailwindcss%2ftypography/-/typography-0.3.1.tgz#253ce580c8e06b6163d9a288edd24f25e1d0dfee"
 
+"@turf/bbox@*":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fbbox/-/bbox-6.3.0.tgz#0e1a9b59f32d6a2a40c806f54cbaa73575bead25"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/meta" "^6.3.0"
+
+"@turf/boolean-disjoint@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fboolean-disjoint/-/boolean-disjoint-6.3.0.tgz#4b27fb3c3c9ff23f69fbcc8d2d03665e9f52c20e"
+  dependencies:
+    "@turf/boolean-point-in-polygon" "^6.3.0"
+    "@turf/helpers" "^6.3.0"
+    "@turf/line-intersect" "^6.3.0"
+    "@turf/meta" "^6.3.0"
+    "@turf/polygon-to-line" "^6.3.0"
+
+"@turf/boolean-intersects@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fboolean-intersects/-/boolean-intersects-6.3.0.tgz#aaa096e6e346e6da673984ad397d4a96cb97cb89"
+  dependencies:
+    "@turf/boolean-disjoint" "^6.3.0"
+    "@turf/helpers" "^6.3.0"
+    "@turf/meta" "^6.3.0"
+
+"@turf/boolean-point-in-polygon@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fboolean-point-in-polygon/-/boolean-point-in-polygon-6.3.0.tgz#784952a36c64119e90fbe94650245da62ecd8fc2"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/invariant" "^6.3.0"
+
+"@turf/distance@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fdistance/-/distance-6.3.0.tgz#4bd084af7fe369e921476e52b597a638dae4ed95"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/invariant" "^6.3.0"
+
+"@turf/helpers@6.x", "@turf/helpers@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fhelpers/-/helpers-6.3.0.tgz#87f90f806c3f8ad6385ef8d2041d3662bf3c9fb1"
+
+"@turf/invariant@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2finvariant/-/invariant-6.3.0.tgz#04a22b26c5503146c03fa6198176b72bd591eadf"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+
+"@turf/line-intersect@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fline-intersect/-/line-intersect-6.3.0.tgz#726a50edc66bb7b5e798b052b103fb0da4d1c4f4"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/invariant" "^6.3.0"
+    "@turf/line-segment" "^6.3.0"
+    "@turf/meta" "^6.3.0"
+    geojson-rbush "3.x"
+
+"@turf/line-segment@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fline-segment/-/line-segment-6.3.0.tgz#b37d6877ee4425ebc12698860e7d355d1bf2ba9b"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/invariant" "^6.3.0"
+    "@turf/meta" "^6.3.0"
+
+"@turf/meta@6.x", "@turf/meta@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fmeta/-/meta-6.3.0.tgz#f3e280ab29641f21e4f99310ce77f9c8394ae394"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+
+"@turf/polygon-to-line@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fpolygon-to-line/-/polygon-to-line-6.3.0.tgz#aa3e1a0ea074479e5cb6c5c111a924bb80ec553e"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/invariant" "^6.3.0"
+
+"@turf/rectangle-grid@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2frectangle-grid/-/rectangle-grid-6.3.0.tgz#d2ddae6b73ca97b30f9f59904227689d66427fa4"
+  dependencies:
+    "@turf/boolean-intersects" "^6.3.0"
+    "@turf/distance" "^6.3.0"
+    "@turf/helpers" "^6.3.0"
+
+"@turf/square-grid@^6.3.0":
+  version "6.3.0"
+  resolved "http://node.senses.co.uk:80/@turf%2fsquare-grid/-/square-grid-6.3.0.tgz#db25e033a1ea3e833bdb09129abd689d0b19d87f"
+  dependencies:
+    "@turf/helpers" "^6.3.0"
+    "@turf/rectangle-grid" "^6.3.0"
+
 "@types/babel-core@^6.25.6":
   version "6.25.6"
   resolved "http://node.senses.co.uk:80/@types%2fbabel-core/-/babel-core-6.25.6.tgz#9e4faefcb300fd3abf0d2c2d85c505071462c1e1"
@@ -1031,6 +1126,10 @@
 "@types/svgo@*":
   version "1.3.4"
   resolved "http://node.senses.co.uk:80/@types%2fsvgo/-/svgo-1.3.4.tgz#75d67b31ed3006c5014c4f810aa300162b68afc8"
+
+"@vue-leaflet/vue-leaflet@^0.6.0":
+  version "0.6.0"
+  resolved "http://node.senses.co.uk:80/@vue-leaflet%2fvue-leaflet/-/vue-leaflet-0.6.0.tgz#ae0b9b81e4599472df263054e209f510e57ce251"
 
 "@vue/compiler-core@3.0.7":
   version "3.0.7"
@@ -2973,6 +3072,15 @@ gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "http://node.senses.co.uk:80/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
 
+geojson-rbush@3.x:
+  version "3.1.2"
+  resolved "http://node.senses.co.uk:80/geojson-rbush/-/geojson-rbush-3.1.2.tgz#577d6ec70ba986d4e60b741f1df5147faeb82c97"
+  dependencies:
+    "@turf/bbox" "*"
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
+    rbush "^2.0.0"
+
 get-caller-file@^2.0.5:
   version "2.0.5"
   resolved "http://node.senses.co.uk:80/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
@@ -3868,6 +3976,10 @@ laravel-mix@^6.0.6:
     webpack-notifier "^1.8.0"
     webpackbar "^5.0.0-3"
     yargs "^16.1.0"
+
+leaflet@^1.7.1:
+  version "1.7.1"
+  resolved "http://node.senses.co.uk:80/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -5079,6 +5191,10 @@ queue-microtask@^1.2.2:
   version "1.2.2"
   resolved "http://node.senses.co.uk:80/queue-microtask/-/queue-microtask-1.2.2.tgz#abf64491e6ecf0f38a6502403d4cda04f372dfd3"
 
+quickselect@^1.0.1:
+  version "1.1.1"
+  resolved "http://node.senses.co.uk:80/quickselect/-/quickselect-1.1.1.tgz#852e412ce418f237ad5b660d70cffac647ae94c2"
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "http://node.senses.co.uk:80/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -5104,6 +5220,12 @@ raw-body@2.4.0:
     http-errors "1.7.2"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+rbush@^2.0.0:
+  version "2.0.2"
+  resolved "http://node.senses.co.uk:80/rbush/-/rbush-2.0.2.tgz#bb6005c2731b7ba1d5a9a035772927d16a614605"
+  dependencies:
+    quickselect "^1.0.1"
 
 read-cache@^1.0.0:
   version "1.0.0"

@@ -12,7 +12,7 @@
 
                 <jet-section-border />
 
-                <server-link class="mt-10 sm:mt-0"></server-link>
+                <server-link :team="team" class="mt-10 sm:mt-0"></server-link>
 
                 <team-member-manager class="mt-10 sm:mt-0"
                             :team="team"

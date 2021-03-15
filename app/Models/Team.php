@@ -19,6 +19,8 @@ class Team extends JetstreamTeam
      */
     protected $casts = [
         'personal_team' => 'boolean',
+        'server_ip' => 'encrypted',
+        'server_port' => 'encrypted'
     ];
 
     /**

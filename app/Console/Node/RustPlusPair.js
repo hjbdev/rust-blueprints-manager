@@ -1,3 +1,14 @@
+const args = process.argv.slice(2);
+
+if(args.length < 4) {
+    throw new Error('Required params: ip, port, playerid, playerToken');
+}
+
+// self destruct
+setTimeout(() => {
+    throw new Error('Timed out');
+}, 1000 * 60);
+
 const axios = require('axios');
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
@@ -8,7 +19,7 @@ const port = 3000;
 const server = app.listen(port);
 
 var expoPushToken = null;
-var steamAuthToken = null;
+var steamAuthToken = args[3];
 
 async function run() {
 
@@ -28,40 +39,30 @@ async function run() {
         expoPushToken = response.data.data.expoPushToken;
         console.log("Received Expo Push Token: " + expoPushToken);
 
-        // register callback
-        app.get('/callback', (req, res) => {
+        if(steamAuthToken){
 
-            steamAuthToken = req.query.token;
+            console.log("Steam Account Connected.");
 
-            if(steamAuthToken){
+            // register with Rust Companion API
+            console.log("Registering with Rust Companion API");
+            axios.post('https://companion-rust.facepunch.com:443/api/push/register', {
+                AuthToken: steamAuthToken,
+                DeviceId: 'rustplus.js',
+                PushKind: 0,
+                PushToken: expoPushToken,
+            }).then((response) => {
+                console.log("Successfully registered with Rust Companion API.");
+                console.log("When you Pair with Servers or Smart Devices in game, notifications will appear here.");
+            }).catch((error) => {
+                console.log("Failed to register with Rust Companion API");
+                console.log(error);
+            });
 
-                console.log("Steam Account Connected.");
-                res.send('Steam Account successfully linked with rustplus.js, you can now close this window and go back to the console.');
+        } else {
+            console.log('token missing from request!');
+        }
 
-                // register with Rust Companion API
-                console.log("Registering with Rust Companion API");
-                axios.post('https://companion-rust.facepunch.com:443/api/push/register', {
-                    AuthToken: steamAuthToken,
-                    DeviceId: 'rustplus.js',
-                    PushKind: 0,
-                    PushToken: expoPushToken,
-                }).then((response) => {
-                    console.log("Successfully registered with Rust Companion API.");
-                    console.log("When you Pair with Servers or Smart Devices in game, notifications will appear here.");
-                }).catch((error) => {
-                    console.log("Failed to register with Rust Companion API");
-                    console.log(error);
-                });
-
-            } else {
-                res.send('token missing from request!');
-            }
-
-        });
-
-        // ask user to login with steam
-        console.log("Please open the following URL in your browser to link your Steam Account with rustplus.js");
-        console.log("https://companion-rust.facepunch.com/login?returnUrl=" + encodeURIComponent(`http://localhost:${port}/callback`));
+       
 
         console.log("Listening for FCM Notifications");
         await listen(credentials, ({ notification, persistentId }) => {
@@ -70,7 +71,8 @@ async function run() {
             const body = JSON.parse(notification.data.body);
 
             // log notification body
-            console.log(body);
+            console.log(notification.data.body);
+            shutdown();
 
         });
 

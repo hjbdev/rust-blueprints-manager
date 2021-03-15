@@ -17,9 +17,9 @@ var rustplus = new RustPlus(args[0], args[1], args[2], args[3]);
 rustplus.on('connected', () => {
     rustplus.getMap((message) => {
 
-        console.log(message);
+        console.log(JSON.stringify(message.response.map));
         // save jpg image of map to file
-        fs.writeFileSync('map.jpg', message.response.map.jpgImage);
+        fs.writeFileSync(`${__dirname}/../../../storage/app/public/maps/${args[0].replace(/\./gi, '-')}.jpg`, message.response.map.jpgImage);
 
         // disconnect from rust server
         rustplus.disconnect();
