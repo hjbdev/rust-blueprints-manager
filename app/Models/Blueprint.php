@@ -18,7 +18,7 @@ class Blueprint extends Model
 
     public function getTeammatesAttribute()
     {
-        return $this->users()->whereIn('id', auth()->user()->currentTeam->allUsers()->pluck('id'))->get();
+        return $this->users()->whereIn('id', auth()->user()->currentTeam->allUsers()->pluck('id'))->wherePivot('team_id', auth()->user()->currentTeam->id)->get();
     }
 
     public function getUserKnowsAttribute()
