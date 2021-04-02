@@ -23,6 +23,6 @@ class Blueprint extends Model
 
     public function getUserKnowsAttribute()
     {
-        return (bool) $this->users()->where('id', auth()->user()->id)->count();
+        return (bool) $this->users()->where('id', auth()->user()->id)->wherePivot('team_id', auth()->user()->currentTeam->id)->count();
     }
 }
