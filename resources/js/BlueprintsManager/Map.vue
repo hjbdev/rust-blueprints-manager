@@ -48,9 +48,9 @@ export default {
             [0, 0],
             [this.mapData.map_data.height / 150, this.mapData.map_data.width / 150],
         ];
-        // this.rustMapImageBounds = this.getLatLngBoundsForMapImage(this.mapData.map_data.width, this.mapData.map_data.height);
+        this.rustMapImageBounds = this.getLatLngBoundsForMapImage(this.mapData.map_data.width, this.mapData.map_data.height);
 
-        var image = L.imageOverlay(this.mapUrl, bounds).addTo(this.map);
+        var image = L.imageOverlay(this.mapUrl, this.rustMapImageBounds).addTo(this.map);
 
         console.log(bounds);
 

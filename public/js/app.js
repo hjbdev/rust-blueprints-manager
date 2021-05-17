@@ -22924,9 +22924,9 @@ __webpack_require__.r(__webpack_exports__);
     this.map.on("contextmenu", function (event) {
       console.log("Coordinates: ", event.latlng.toString());
     });
-    var bounds = [[0, 0], [this.mapData.map_data.height / 150, this.mapData.map_data.width / 150]]; // this.rustMapImageBounds = this.getLatLngBoundsForMapImage(this.mapData.map_data.width, this.mapData.map_data.height);
-
-    var image = leaflet__WEBPACK_IMPORTED_MODULE_0___default().imageOverlay(this.mapUrl, bounds).addTo(this.map);
+    var bounds = [[0, 0], [this.mapData.map_data.height / 150, this.mapData.map_data.width / 150]];
+    this.rustMapImageBounds = this.getLatLngBoundsForMapImage(this.mapData.map_data.width, this.mapData.map_data.height);
+    var image = leaflet__WEBPACK_IMPORTED_MODULE_0___default().imageOverlay(this.mapUrl, this.rustMapImageBounds).addTo(this.map);
     console.log(bounds);
     var gridBounds = [0 + this.mapData.map_data.oceanMargin / 150, 0 + this.mapData.map_data.oceanMargin / 150, this.mapData.map_data.height / 150 - this.mapData.map_data.oceanMargin / 150, this.mapData.map_data.width / 150 - this.mapData.map_data.oceanMargin / 150];
     console.log(gridBounds);
